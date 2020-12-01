@@ -1,10 +1,10 @@
 import React from "react";
-import Chat from "./components/Chating/Chat";
+import Main from "./components/Chating/Main";
 
 function App() {
   return (
     <>
-      <Chat />
+      <Main />
     </>
   );
 }

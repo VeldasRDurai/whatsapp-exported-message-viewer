@@ -1,6 +1,6 @@
 import React from "react";
 
-const SingleChat = ({ date , time , name , chat }) => {
+const SingleChat = ({ time , name , chat }) => {
     const style = {
         alignSelf:"flex-start",
         margin:"3px 10px 3px 10px ",

@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import SingleChat from "./SingleChat";
-import Inputer from "./Inputer";
+import DateDiv from "./DateDiv";
 
-// import history from "./after";
+function Chat( { history } ) {
 
-function Chat() {
-
-    const [ history , setHistory ] = useState([]);
-
-    let preDate = "";
     const style = {
         display : "flex" ,
         flexDirection : "column" ,
@@ -16,46 +11,27 @@ function Chat() {
         width   : "375px" ,
         border  : "1px solid green",
         overflowY: "scroll" ,
-        backgroundColor:"#e5ddd5"
-    };
-    const dateDivStyle = {
-        alignSelf:"center",
-        margin:"10px 10px 10px 10px ",
-        height : "auto", 
-        width : "auto",
-        backgroundColor : "#e1f3fb",
-        color:"black",
-        boxShadow :"2px 2px 4px grey" ,
-        borderRadius : "7px",
-        padding : "4px"
+        backgroundColor:"#e5ddd5" ,
+        // position : "relative" ,
     };
 
-    const changeHistory = (newHistory) => {
-        console.log("Reached Change history...");
-        console.log(newHistory);
-        setHistory(newHistory);
-    }
-
+    let currentDate = "";
     return (
-        <div style={{display:"flex" , justifyContent :"center"}}>
-            <Inputer changeHistory={changeHistory} />
-            <div style={style} >
-                {history.map( (item,index) => {
-                    let dateDiv = <></>;
-                    if (preDate !== item.Date){
-                        dateDiv = <div style={dateDivStyle}> {item.Date} </div> ;
-                        preDate = item.Date;
-                    }
-                    return <>
-                        {dateDiv}
-                        <SingleChat key={index} 
-                            date={item.Date} 
-                            time={item.Time} 
-                            name={item.Name} 
-                            chat={item.Chat} />
-                    </> ;
-                })} 
-            </div>
+        <div style={style} >
+            {history.map( (item,index) => {
+                let addDateDiv = false ;
+                if (currentDate !== item.Date){
+                    addDateDiv = true;
+                    currentDate = item.Date;
+                }
+                return <>
+                    { addDateDiv && <DateDiv date={currentDate} /> }  {/* DateDiv added whenever current date changes */}  
+                    <SingleChat key={index}
+                        time={item.Time} 
+                        name={item.Name} 
+                        chat={item.Chat} />
+                </> ;
+            })} 
         </div>
     );
 }

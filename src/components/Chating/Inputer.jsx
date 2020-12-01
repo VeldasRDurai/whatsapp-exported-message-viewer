@@ -13,7 +13,7 @@ const Inputer = ( {changeHistory} ) => {
     const clickedButton = () => {
 
         let lines = val.split("\n") ;
-        // console.log(lines);
+
         let back = "" ;
         for ( let i=0; i<lines.length-1 ; i++){
             if ( (/\n?\d{2}\/\d{2}\/\d{2},.(\d)?\d:\d{2}.(a|p)m.-./).test(lines[i+1]) ){
@@ -25,10 +25,7 @@ const Inputer = ( {changeHistory} ) => {
 
         let history = [];
         let value = back.split("\n");
-        console.log(value);
         for ( let i=0;i<value.length; i++){
-
-            // console.log(value[i]);
 
             let dateEnd    = value[i].indexOf(",",0        );
             let timeEnd    = value[i].indexOf("-",dateEnd+1);
@@ -42,12 +39,6 @@ const Inputer = ( {changeHistory} ) => {
                 unFormatedChat = unFormatedChat.replace('"','&1003;');
             }
 
-            // console.log(unFormatedChat);
-            // console.log(i + " : " + (value[i].slice(0,dateEnd).trim()) );
-            // console.log(i + " : " + (value[i].slice(dateEnd+1,timeEnd).trim()) );
-            // console.log(i + " : " + (value[i].slice(timeEnd+1,nameEnd).trim()) );
-            // console.log(i + " : " + (unFormatedChat.trim()));
-
             const singleChatData = {
                 Date : "date" , Time : "time" , Name : "name" , Chat : "chat"
             };
@@ -55,15 +46,8 @@ const Inputer = ( {changeHistory} ) => {
             singleChatData.Time = value[i].slice(dateEnd+1,timeEnd).trim() ;
             singleChatData.Name = value[i].slice(timeEnd+1,nameEnd).trim() ;
             singleChatData.Chat = unFormatedChat.trim();
-            // {
-            //     Date : value[i].slice(0,dateEnd).trim() ,
-            //     Time : value[i].slice(dateEnd+1,timeEnd).trim() ,
-            //     Name : value[i].slice(timeEnd+1,nameEnd).trim() ,
-            //     Chat : unFormatedChat.trim() 
-            // };
             
             history.push(singleChatData);
-            console.log(i + " : " + singleChatData.Date + " : " + singleChatData.Time+ " : " + singleChatData.Name);
         }
         changeHistory(history);
     }
