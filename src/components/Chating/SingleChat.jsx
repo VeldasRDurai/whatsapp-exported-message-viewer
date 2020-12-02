@@ -1,6 +1,6 @@
 import React from "react";
 
-const SingleChat = ({ time , name , chat }) => {
+const SingleChat = ({ date , time , name , chat , yourName }) => {
     const style = {
         alignSelf:"flex-start",
         margin:"3px 10px 3px 10px ",
@@ -17,7 +17,8 @@ const SingleChat = ({ time , name , chat }) => {
         fontSize:"13px",
         fontWeight:"600"
     };
-    if (name === "Veldas R Durai"){
+
+    if (name === yourName){
         style.backgroundColor = "#dcf8c6";
         style.alignSelf = "flex-end";
         nameStyle.color = "#44d19e" ;
@@ -36,13 +37,13 @@ const SingleChat = ({ time , name , chat }) => {
     return (
         <div style={style} >
             <div style={nameStyle} >
-                { name==="Veldas R Durai" ? "You": name } 
+                { name === yourName ? "You": name } 
             </div>
             {chat.split("\n").map( (item) => {
                 return <div>{item}</div>;
             })}
             <div style={{fontSize:"10px",textAlign:"end",color:"#8c8c8c"}}>
-                {time} &#10004;&#10004;
+                {date + "--"}{time} &#10004;&#10004;
             </div>
         </div>
     );

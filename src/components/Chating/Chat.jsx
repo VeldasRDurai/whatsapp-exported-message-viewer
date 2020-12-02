@@ -2,7 +2,7 @@ import React from "react";
 import SingleChat from "./SingleChat";
 import DateDiv from "./DateDiv";
 
-function Chat( { history } ) {
+function Chat( { history , yourName } ) {
 
     const style = {
         display : "flex" ,
@@ -18,6 +18,7 @@ function Chat( { history } ) {
     let currentDate = "";
     return (
         <div style={style} >
+
             {history.map( (item,index) => {
                 let addDateDiv = false ;
                 if (currentDate !== item.Date){
@@ -27,9 +28,11 @@ function Chat( { history } ) {
                 return <>
                     { addDateDiv && <DateDiv date={currentDate} /> }  {/* DateDiv added whenever current date changes */}  
                     <SingleChat key={index}
+                        date={item.Date}
                         time={item.Time} 
                         name={item.Name} 
-                        chat={item.Chat} />
+                        chat={item.Chat} 
+                        yourName={yourName} />
                 </> ;
             })} 
         </div>

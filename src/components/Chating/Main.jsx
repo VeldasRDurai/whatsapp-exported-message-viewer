@@ -4,40 +4,38 @@ import Chat from "./Chat";
 
 function Main() {
 
+    const [ yourName, setYourName] = useState("noname");
     const [ history , setHistory ] = useState([]);
-    // let you = "";
-    // let names = [];
-    // useEffect( () => {
-    //     names = [];
-    //     for ( let i=0 ; i<history.length ; i++){
-    //         if ( !(names.some( (item) => { return item === history[i].Name })) ){  /* finding weather name in history is in names array */
-    //             names.push( history[i].Name );
-    //             if (names.length === 2){ 
-    //                 let x = Window.confirm("Your name is : " + names[0]);
-    //                 if ( x ) {
-    //                     you = names[0];
-    //                 } else {
-    //                     you = names[1];
-    //                 }
-    //                 break; 
-    //             }
-    //         }
-    //     }
-    // } , [history]);
-    
     const style = {
         display:"flex" ,
         justifyContent :"center"
     }
 
     const changeHistory = (newHistory) => {
+        console.log( newHistory.length );
+        console.log( newHistory );
+        let x = window.confirm("Shall I consider " + newHistory[0].Name + " as your name.");
+        let you = "" ;
+        if ( x === false){
+            try{
+                you = newHistory.find( (item) => {
+                return item.Name !== newHistory[0].Name;
+                }).Name;
+            } catch(e){ you = "noname"}
+        } else {
+            you = newHistory[0].Name;
+        }
+        console.log("Your Name is : " + you);
+        setYourName(you);
         setHistory(newHistory);
     }
 
     return (
         <div style={style}>
+
             <Inputter changeHistory={changeHistory} />
-            <Chat history={history} />
+            <Chat history={history} yourName={yourName} />
+
         </div>
     );
 }

@@ -53,7 +53,7 @@ const Inputer = ( {changeHistory} ) => {
     }
 
     return <div style={style} >
-        <textarea style={{border:"black solid 1px" , margin:"10px" , padding:"10px" , height:"610px" , overflow:"hidden"}}
+        <textarea style={{border:"black solid 1px" , margin:"10px" , padding:"10px" , height:"610px" , overflow:"hidden" , resize:"none"}}
             onChange={ (e) => {val = (e.target.value)} } 
             onClick ={ (e) => {(e.target.value) = "" } } >
                 {"COPY PASTE YOUR EXPORTED CHAT'S CONTENT HERE"}
