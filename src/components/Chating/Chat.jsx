@@ -26,13 +26,18 @@ function Chat( { history , yourName } ) {
                     currentDate = item.Date;
                 }
                 return <>
-                    { addDateDiv && <DateDiv date={currentDate} /> }  {/* DateDiv added whenever current date changes */}  
-                    <SingleChat key={index}
-                        date={item.Date}
-                        time={item.Time} 
-                        name={item.Name} 
-                        chat={item.Chat} 
-                        yourName={yourName} />
+                    { addDateDiv && <DateDiv date={currentDate} chat={false} /> }  
+                    {/* DateDiv added whenever current date changes */}  
+
+                    { item.Notification === true ?
+                        <DateDiv date={item.Date} chat={item.Chat} /> :
+                        <SingleChat key={index}
+                            date={item.Date}
+                            time={item.Time} 
+                            name={item.Name} 
+                            chat={item.Chat} 
+                            yourName={yourName} /> 
+                    }
                 </> ;
             })} 
         </div>

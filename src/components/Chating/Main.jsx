@@ -4,7 +4,7 @@ import Chat from "./Chat";
 
 function Main() {
 
-    const [ yourName, setYourName] = useState("noname");
+    const [ yourName, setYourName] = useState("");
     const [ history , setHistory ] = useState([]);
     const style = {
         display:"flex" ,
@@ -12,21 +12,19 @@ function Main() {
     }
 
     const changeHistory = (newHistory) => {
-        console.log( newHistory.length );
-        console.log( newHistory );
-        let x = window.confirm("Shall I consider " + newHistory[0].Name + " as your name.");
-        let you = "" ;
-        if ( x === false){
-            try{
-                you = newHistory.find( (item) => {
-                return item.Name !== newHistory[0].Name;
-                }).Name;
-            } catch(e){ you = "noname"}
-        } else {
-            you = newHistory[0].Name;
+                                                        
+        let firstName = newHistory.find( (item) => {  // findind weather there is any name
+            return item.Notification === false ;
+        }).Name;
+
+        if (typeof firstName !== undefined){ 
+            ( window.confirm("Shall I consider " + firstName + " as your name.") ) ?
+                setYourName(firstName) :
+                setYourName(newHistory.find( (item) => {
+                    return ( (item.Notification !== false) && (item.Name !== firstName)) ; 
+                }).Name);
         }
-        console.log("Your Name is : " + you);
-        setYourName(you);
+
         setHistory(newHistory);
     }
 

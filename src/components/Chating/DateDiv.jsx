@@ -1,6 +1,6 @@
 import React from "react";
 
-const DateDiv = ({ date }) => {
+const DateDiv = ({ date , chat}) => {
 
     const dateDivStyle = {
         alignSelf:"center",
@@ -18,14 +18,25 @@ const DateDiv = ({ date }) => {
     const months = [
         "" , "JANUARY" , "FEBUARY" , "MARCH" , "APRIL" , "MAY" , "JUNE" , "JULY" , "AUGUST" , "SEPTEMBER" , "OCTOBER" , "NOVEMBER" , "DECEMBER"
     ];
-    return (
-        <div style={dateDivStyle}>
-            {/* { date } */}
-            { date.match(/\d{2}\//)[0].slice(0,2) + " " }                       {/* day */}
-            { (  months[Number( date.match(/\/\d{2}\//)[0].slice(1,3) )] ) }    {/* month */}
-            { " 20" + date.match(/\/\d{2}/g)[1].slice(1) }                      {/* year */}
-        </div>
-    );
+
+    if ( chat === false ){
+        return (
+            <div style={dateDivStyle}>
+                {console.log("THis is date")}
+                {/* { date } */}
+                { date.match(/\d{2}\//)[0].slice(0,2) + " " }                       {/* day */}
+                { (  months[Number( date.match(/\/\d{2}\//)[0].slice(1,3) )] ) }    {/* month */}
+                { " 20" + date.match(/\/\d{2}/g)[1].slice(1) }                      {/* year */}
+            </div>
+        );
+    } else {
+        return (
+            <div style={dateDivStyle}>
+                {console.log("THis is notification")}
+                {chat}
+            </div>
+        );
+    }
 }
 
 export default DateDiv;
