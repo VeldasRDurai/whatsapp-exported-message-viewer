@@ -25,17 +25,20 @@ const Inputer = ( {changeHistory} ) => {
 
         let history = [];
         let value = back.split("\n");
+        // console.log("values : " + value);
         for ( let i=0;i<value.length; i++){ 
 
-            if ( value[i] === "" ) {break;}
+            if ( !(/\n?\d{2}\/\d{2}\/\d{2},.(\d)?\d:\d{2}.(a|p)m.-./).test(value[i]) ) {break;}
 
             let dateEnd    = value[i].indexOf(",",0        );
             let timeEnd    = value[i].indexOf("-",dateEnd+1);
             let nameEnd    = value[i].indexOf(":",timeEnd+1);
             
             const singleChatData = {};
-            singleChatData.Date = value[i].slice(0,dateEnd).trim() ;
-            singleChatData.Time = value[i].slice(dateEnd+1,timeEnd).trim() ;
+            // singleChatData.Date = value[i].slice(0,dateEnd).trim() ;
+            // singleChatData.Time = value[i].slice(dateEnd+1,timeEnd).trim() ;
+            singleChatData.Date = value[i].match(/\d{2}\/\d{2}\/\d{2}/)[0];
+            singleChatData.Time = value[i].match(/(\d)?\d:\d{2}.(a|p)m/)[0];
 
             if ( nameEnd !== -1){                                      // There is no nameEnd in notifications
                 let unFormatedChat = value[i].slice(nameEnd+1) ;
