@@ -1,8 +1,8 @@
-import React from "react";
+import React , { useState , useEffect , useRef } from "react";
 
-const DateDiv = ({ date , chat}) => {
-
-    const dateDivStyle = {
+const DateDiv = ({ date , parentScrollTop }) => {
+    const refDateDiv = useRef();
+    const [ style , setStyle ] = useState({
         alignSelf:"center",
         margin:"10px 10px 10px 10px ",
         height : "auto", 
@@ -13,30 +13,27 @@ const DateDiv = ({ date , chat}) => {
         borderRadius : "7px",
         padding : "4px" ,
         fontSize : "12px"
-    };
+    });
 
-    const months = [
+    const months = [    
         "" , "JANUARY" , "FEBUARY" , "MARCH" , "APRIL" , "MAY" , "JUNE" , "JULY" , "AUGUST" , "SEPTEMBER" , "OCTOBER" , "NOVEMBER" , "DECEMBER"
     ];
 
-    if ( chat === false ){
-        return (
-            <div style={dateDivStyle}>
-                {console.log("THis is date")}
-                {/* { date } */}
-                { date.match(/\d{2}\//)[0].slice(0,2) + " " }                       {/* day */}
-                { (  months[Number( date.match(/\/\d{2}\//)[0].slice(1,3) )] ) }    {/* month */}
-                { " 20" + date.match(/\/\d{2}/g)[1].slice(1) }                      {/* year */}
-            </div>
-        );
-    } else {
-        return (
-            <div style={dateDivStyle}>
-                {console.log("THis is notification")}
-                {chat}
-            </div>
-        );
-    }
+    useEffect(() => {
+        if ( parentScrollTop+10 > refDateDiv.current.offsetTop ){
+            setStyle( (pre) => {
+                return { ...pre , position : "fixed" }
+            });
+        }
+    },[parentScrollTop]);
+
+    return ( 
+        <div ref={refDateDiv} style={style} >
+            { date.match(/\d{2}\//)[0].slice(0,2) + " " }                       {/* day */}
+            { (  months[Number( date.match(/\/\d{2}\//)[0].slice(1,3) )] ) }    {/* month */}
+            { " 20" + date.match(/\/\d{2}/g)[1].slice(1) }                      {/* year */}
+        </div>
+    );
 }
 
 export default DateDiv;
