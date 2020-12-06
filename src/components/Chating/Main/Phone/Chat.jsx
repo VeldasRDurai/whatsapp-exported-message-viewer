@@ -1,26 +1,23 @@
-import React , { useState } from "react";
-import SingleChat from "./SingleChat";
-import NotificationDiv from "./NotificationDiv";
-import DateDiv from "./DateDiv";
+import React from "react";
+import SingleChat from "./Chat/SingleChat";
+import NotificationDiv from "./Chat/NotificationDiv";
+import DateDiv from "./Chat/DateDiv";
 
 function Chat( { history , yourName } ) {
-
-    const [ scrollTop , setScrollTop  ] = useState(0);
 
     const style = {
         display : "flex" ,
         flexDirection : "column" ,
-        height  : "650px" ,
-        width   : "375px" ,
-        border  : "1px solid green",
+        height  : "87%" ,
+        width   : "100%" ,
         overflowY: "scroll" ,
         backgroundColor:"#e5ddd5" ,
-        // position : "relative" ,
     };
 
     let currentDate = "";
     return (
-        <div style={style}  onScroll={(e) => {setScrollTop(e.target.scrollTop)}} >
+        <div style={style} >
+
 
             {history.map( (item,index) => {
                 let addDateDiv = false ;
@@ -29,7 +26,7 @@ function Chat( { history , yourName } ) {
                     currentDate = item.Date;
                 }
                 return <>
-                    { addDateDiv && <DateDiv date={currentDate} parentScrollTop={scrollTop} /> }  
+                    { addDateDiv && <DateDiv date={currentDate}  />} 
                     {/* DateDiv added whenever current date changes */}  
 
                     { item.Notification === true ?

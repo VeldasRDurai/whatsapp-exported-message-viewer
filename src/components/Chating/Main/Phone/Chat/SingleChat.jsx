@@ -5,12 +5,14 @@ const SingleChat = ({ date , time , name , chat , yourName }) => {
         alignSelf:"flex-start",
         margin:"3px 10px 3px 10px ",
         height : "auto", 
-        width : "auto", maxWidth : "250px" ,
+        width : "auto", maxWidth : "165px" ,
         backgroundColor : "white",
         color:"black",
         boxShadow :"2px 2px 4px grey" ,
         borderRadius : "7px",
-        padding : "0px 10px 0px 10px"
+        padding : "0px 10px 0px 10px",
+        fontSize:"14px",
+        wordWrap:"break-word"
     };
     const nameStyle = {
         color:"rgb(33 123 236)",
@@ -43,7 +45,7 @@ const SingleChat = ({ date , time , name , chat , yourName }) => {
                 return <div>{item}</div>;
             })}
             <div style={{fontSize:"10px",textAlign:"end",color:"#8c8c8c"}}>
-                {date + "--"}{time} &#10004;&#10004;
+                {date + "--"}{time} <span style={{color:"#57c6f4"}}>&#10004;&#10004;</span>
             </div>
         </div>
     );

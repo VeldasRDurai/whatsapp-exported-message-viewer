@@ -7,12 +7,13 @@ const NotificationDiv = ({ notification }) => {
         margin:"10px 10px 10px 10px ",
         height : "auto", 
         width : "auto",
-        backgroundColor : "#e1f3fb",
+        backgroundColor : "#fef4c5",
         color:"black",
         boxShadow :"2px 2px 4px grey" ,
         borderRadius : "7px",
         padding : "4px" ,
-        fontSize : "12px"
+        fontSize : "11px",
+        textAlign:"center",
     };
 
     return (

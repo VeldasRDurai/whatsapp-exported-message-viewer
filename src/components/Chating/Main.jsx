@@ -1,16 +1,24 @@
 import React , { useState } from "react";
-import Inputter from "./Inputer";
-import SelectName from "./SelectName";
-import Chat from "./Chat";
+import Inputter from "./Main/Inputer";
+import SelectName from "./Main/SelectName";
+import Phone from "./Main/Phone";
 
 function Main() {
+
+    const [ showSelectName , setShowSelectName ] = useState(false);
 
     const [ names   , setNames   ] = useState([]);
     const [ yourName, setYourName] = useState("");
     const [ history , setHistory ] = useState([]);
     const style = {
-        display:"flex" ,
-        justifyContent :"center"
+        // display:"grid" ,
+        // gridTemplateRows:"89vh",
+        // gridTemplateColumns:"20vw 22vw 58vw",
+        display:"flex",
+        height:"89vh",
+        justifyContent:"center",
+        alignItems:"center",
+        // background:"red",
     }
 
     const changeHistory = (newHistory) => {
@@ -23,16 +31,12 @@ function Main() {
         setHistory(newHistory);
     }
 
-    const displayChat = (name) => {
-        setYourName(name);
-    }
-
     return (
         <div style={style}>
 
-            <Inputter changeHistory={changeHistory} />
-            <SelectName names={names} displayChat={displayChat} />
-            <Chat history={history} yourName={yourName} /> 
+            { showSelectName && <SelectName names={names} changeName={setYourName} setShowSelectName={setShowSelectName} /> }
+            <Inputter changeHistory={changeHistory} setShowSelectName={setShowSelectName}/>
+            <Phone history={history} yourName={yourName} /> 
             
         </div>
     );

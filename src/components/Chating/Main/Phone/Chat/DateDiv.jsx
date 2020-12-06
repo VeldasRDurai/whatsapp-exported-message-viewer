@@ -1,8 +1,7 @@
-import React , { useState , useEffect , useRef } from "react";
+import React from "react";
 
-const DateDiv = ({ date , parentScrollTop }) => {
-    const refDateDiv = useRef();
-    const [ style , setStyle ] = useState({
+const DateDiv = ({ date }) => {
+     const style = {
         alignSelf:"center",
         margin:"10px 10px 10px 10px ",
         height : "auto", 
@@ -13,22 +12,14 @@ const DateDiv = ({ date , parentScrollTop }) => {
         borderRadius : "7px",
         padding : "4px" ,
         fontSize : "12px"
-    });
+    };
 
     const months = [    
         "" , "JANUARY" , "FEBUARY" , "MARCH" , "APRIL" , "MAY" , "JUNE" , "JULY" , "AUGUST" , "SEPTEMBER" , "OCTOBER" , "NOVEMBER" , "DECEMBER"
     ];
 
-    useEffect(() => {
-        if ( parentScrollTop+10 > refDateDiv.current.offsetTop ){
-            setStyle( (pre) => {
-                return { ...pre , position : "fixed" }
-            });
-        }
-    },[parentScrollTop]);
-
     return ( 
-        <div ref={refDateDiv} style={style} >
+        <div style={style} >
             { date.match(/\d{2}\//)[0].slice(0,2) + " " }                       {/* day */}
             { (  months[Number( date.match(/\/\d{2}\//)[0].slice(1,3) )] ) }    {/* month */}
             { " 20" + date.match(/\/\d{2}/g)[1].slice(1) }                      {/* year */}

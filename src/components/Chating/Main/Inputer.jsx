@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Inputer = ( {changeHistory} ) => {
-    let val = "";
+import Write from "./Inputter/Write";
+import Click from "./Inputter/Click";
+
+const Inputer = ( {changeHistory , setShowSelectName } ) => {
+    const [ val , setVal ] = useState("");
     const style = {
         display : "flex" ,
-        flexDirection: "column",
-        height  : "650px" ,
-        width   : "375px" ,
-        border  : "1px solid green",
-        backgroundColor:"white"
+        flexDirection:"column",
+        alignItems:"flex-start",
+        // height:"60%",
+        // width:"35%",
+        height:"350px",
+        width:"450px"
+
+        // border:"1px green solid"
     };
     const clickedButton = () => {
 
@@ -25,7 +31,6 @@ const Inputer = ( {changeHistory} ) => {
 
         let history = [];
         let value = back.split("\n");
-        // console.log("values : " + value);
         for ( let i=0;i<value.length; i++){ 
 
             if ( !(/\n?\d{2}\/\d{2}\/\d{2},.(\d)?\d:\d{2}.(a|p)m.-./).test(value[i]) ) {break;}
@@ -63,13 +68,22 @@ const Inputer = ( {changeHistory} ) => {
     }
 
     return <div style={style} >
-        <textarea style={{border:"black solid 1px" , margin:"10px" , padding:"10px" , height:"610px" , overflow:"hidden" , resize:"none"}}
-            onChange={ (e) => {val = (e.target.value)} }  >
-                {/* onClick ={ (e) => {(e.target.value) = "" } } > */}
-                {"COPY PASTE YOUR EXPORTED CHAT'S CONTENT HERE"}
-        </textarea>
-        <button style={{margin:"10px"}} onClick={clickedButton} >Submit</button>
-    </div>;
+        <div style={{
+            fontSize:"30px",
+        }} >
+            <div> {"Exported Chat"} </div>
+            <div> {"Viewer For WhatsApp"} </div>
+            <div style={{fontSize:"12px",fontFamily:"cursive"}}> {"COPY PASTE YOUR EXPORTED CHAT'S CONTENT HERE... 👇"}</div>
+        </div>
+        <Write setVal={setVal} val={val} />
+        {/* <button style={{margin:"10px 10px 10px 0px"}} onClick={ () => setVal("") } >Reset </button>
+        <button style={{margin:"10px 10px 10px 0px"}} onClick={clickedButton} >Submit</button> */}
+        <div style={{width:"100%",display:"flex",justifyContent:"start", marginTop:"5px"}}>
+            <Click value={"Reset"} onClick={ () => setVal("") } />
+            <Click value={"Submit"} onClick={ () => {setShowSelectName(true);clickedButton();} } />
+            <Click value={"ChangeName"} onClick={ () => setShowSelectName(true)} />
+        </div>
+    </div>; 
 }
 
 export default Inputer;
