@@ -27,6 +27,7 @@ function Main() {
         }).map( (item2) => {
             return item2.Name;
         });
+        newHistory.length===0 && alert("It is not a exported chat");
         setNames([...new Set(listOfNames) ]);
         setHistory(newHistory);
     }
@@ -34,7 +35,10 @@ function Main() {
     return (
         <div style={style}>
 
-            { showSelectName && <SelectName names={names} changeName={setYourName} setShowSelectName={setShowSelectName} /> }
+            <SelectName names={names} changeName={setYourName} 
+            setShowSelectName={setShowSelectName} 
+            display={ showSelectName ? "flex" : "none" } /> 
+
             <Inputter changeHistory={changeHistory} setShowSelectName={setShowSelectName}/>
             <Phone history={history} yourName={yourName} /> 
             

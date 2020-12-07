@@ -80,8 +80,8 @@ const Inputer = ( {changeHistory , setShowSelectName } ) => {
         <button style={{margin:"10px 10px 10px 0px"}} onClick={clickedButton} >Submit</button> */}
         <div style={{width:"100%",display:"flex",justifyContent:"start", marginTop:"5px"}}>
             <Click value={"Reset"} onClick={ () => setVal("") } />
-            <Click value={"Submit"} onClick={ () => {setShowSelectName(true);clickedButton();} } />
-            <Click value={"ChangeName"} onClick={ () => setShowSelectName(true)} />
+            <Click value={"Submit"} onClick={ () => {/*setShowSelectName(true);*/clickedButton();} } />
+            <Click value={"Change You"} onClick={ () => setShowSelectName(true)} />
         </div>
     </div>; 
 }

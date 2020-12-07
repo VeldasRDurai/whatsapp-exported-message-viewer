@@ -1,7 +1,9 @@
 import React , { useState } from "react";
+
+import SelectNameHead from "./SelectName/SelectNameHead"
 import SingleName from "./SelectName/SingleName";
 
-const SelectName = ({ names , changeName , setShowSelectName }) => {
+const SelectName = ({ names , changeName , setShowSelectName , display }) => {
 
     const [ selectedName , setSelectName ] = useState("None Of These");
     const style = {
@@ -9,12 +11,18 @@ const SelectName = ({ names , changeName , setShowSelectName }) => {
         width   : "100%" ,
         top:"0px",left:"0px",
         position:"fixed",
-        display:"flex",
         justifyContent:"center",
         alignItems:"center",
         backgroundColor:"#000000b3",
-        zIndex:"100"
+        zIndex:"100",
+        display:display,
     };
+    const style2 = {
+        position:"relative",
+        backgroundColor:"white",
+        height:"400px",
+        width:"300px",
+    }
 
     const selectNewName = (Newname) => {
         setSelectName(Newname);
@@ -23,24 +31,20 @@ const SelectName = ({ names , changeName , setShowSelectName }) => {
 
     return (
         <div style={style} >
-            <div style={{backgroundColor:"white",height:"300px",width:"400px",overflowY:"scroll"}} >
-                <div style={{
-                    display:"flex",margin:"16px 0px 16px 10px",padding:"10px",alignItems:"center",
-                    border:"1px solid #eceff1" , borderRadius:"24px", justifyContent:"center",alignSelf:"flex-start",
-                    boxShadow:" 0 1px 2px 0 rgba(60,64,67,0.302)"
-                    }}>
-                    {"Select your name : "}
+            <div style={style2} >
+                <SelectNameHead />
+                <div style={{ height:"325px",overflowY:'scroll'}} >
+                    <SingleName name={"None Of These"} 
+                        selectedName={selectedName} 
+                        selectNewName={selectNewName} 
+                        setShowSelectName={setShowSelectName} />
+                    {names.map( (item) => {
+                        return <SingleName key={item} name={item} 
+                        selectedName={selectedName} 
+                        selectNewName={selectNewName} 
+                        setShowSelectName={setShowSelectName} />
+                    })}
                 </div>
-                <SingleName name={"None Of These"} 
-                    selectedName={selectedName} 
-                    selectNewName={selectNewName} 
-                    setShowSelectName={setShowSelectName} />
-                {names.map( (item,index) => {
-                    return <SingleName key={item} name={item} 
-                    selectedName={selectedName} 
-                    selectNewName={selectNewName} 
-                    setShowSelectName={setShowSelectName} />
-                })}
             </div>
         </div>
     );
