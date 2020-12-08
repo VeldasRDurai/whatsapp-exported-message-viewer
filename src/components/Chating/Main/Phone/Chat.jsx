@@ -3,7 +3,7 @@ import SingleChat from "./Chat/SingleChat";
 import NotificationDiv from "./Chat/NotificationDiv";
 import DateDiv from "./Chat/DateDiv";
 
-function Chat( { history , yourName } ) {
+function Chat( { fullScreen , history , yourName } ) {
 
     const style = {
         display : "flex" ,
@@ -36,7 +36,8 @@ function Chat( { history , yourName } ) {
                             time={item.Time} 
                             name={item.Name} 
                             chat={item.Chat} 
-                            yourName={yourName} /> 
+                            yourName={yourName} 
+                            fullScreen={fullScreen} /> 
                     }
                 </> ;
             })} 

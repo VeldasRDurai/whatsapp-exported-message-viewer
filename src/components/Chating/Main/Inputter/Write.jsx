@@ -9,11 +9,20 @@ const TextArea = styled.textarea`
     border:none;
     overflow:hidden; 
     resize:none;
-    
-    &:hover {
-    }
     &:focus {
         outline:none;
+    }
+
+    @media ( max-width: 650px){
+        font-size: 14px;
+        height: 320px;
+        width: 85%;
+        padding:21px;
+        margin:10px 0;
+        box-sizing:border-box;
+        border: 1px solid black;
+        border-radius:20px;
+        overflow-y: scroll;
     }
 `
 
@@ -27,7 +36,7 @@ const Write = ({ setVal , val }) => {
     return (
         <TextArea ref={refTextArea} spellCheck={false}
             onChange={ (e) => { let copy = (e.target.value) ; setVal(copy); (e.target.value)=copy} }  >
-                {" "}
+                {""}
         </TextArea>
     );
 }

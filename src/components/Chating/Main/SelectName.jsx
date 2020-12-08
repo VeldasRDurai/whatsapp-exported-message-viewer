@@ -30,8 +30,8 @@ const SelectName = ({ names , changeName , setShowSelectName , display }) => {
     }
 
     return (
-        <div style={style} >
-            <div style={style2} >
+        <div style={style}>
+            <div style={style2}>
                 <SelectNameHead />
                 <div style={{ height:"325px",overflowY:'scroll'}} >
                     <SingleName name={"None Of These"} 

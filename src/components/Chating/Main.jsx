@@ -1,7 +1,22 @@
 import React , { useState } from "react";
+import styled from "styled-components";
+
 import Inputter from "./Main/Inputer";
 import SelectName from "./Main/SelectName";
 import Phone from "./Main/Phone";
+
+const Div = styled.div`
+    display:flex;
+    height:89vh;
+    justify-content:center;
+    align-items:center;
+    
+    @media ( max-width: 650px){
+        flex-direction:column;
+        height:auto;
+        align-items:center;
+    }
+`
 
 function Main() {
 
@@ -10,16 +25,6 @@ function Main() {
     const [ names   , setNames   ] = useState([]);
     const [ yourName, setYourName] = useState("");
     const [ history , setHistory ] = useState([]);
-    const style = {
-        // display:"grid" ,
-        // gridTemplateRows:"89vh",
-        // gridTemplateColumns:"20vw 22vw 58vw",
-        display:"flex",
-        height:"89vh",
-        justifyContent:"center",
-        alignItems:"center",
-        // background:"red",
-    }
 
     const changeHistory = (newHistory) => {
         let listOfNames = newHistory.filter( (item) => {
@@ -33,7 +38,7 @@ function Main() {
     }
 
     return (
-        <div style={style}>
+        <Div>
 
             <SelectName names={names} changeName={setYourName} 
             setShowSelectName={setShowSelectName} 
@@ -42,7 +47,7 @@ function Main() {
             <Inputter changeHistory={changeHistory} setShowSelectName={setShowSelectName}/>
             <Phone history={history} yourName={yourName} /> 
             
-        </div>
+        </Div>
     );
 }
 

@@ -1,23 +1,32 @@
 import React from "react";
+import styled from "styled-components";
+
 import NavIcon from "./MainHead/NavIcon";
 
+const Div = styled.div`
+    height: 8vh;
+    padding: 8px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 30px;
+    border-bottom: 1px solid rgb(236, 239, 241);
+    @media ( max-width: 650px){
+        background-color: black;
+        color:white;
+        justify-content: center;
+        >:nth-child(1){display:none;}
+    }
+`
+
 const MainHead = () => {
-    const style = {
-        height : "8vh" ,
-        padding:"8px",
-        backgroundColor:"white",
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"flex-start",
-        fontSize:"30px",
-        borderBottom:"1px solid #eceff1",
-        // boxSizing:"border-box",
-    };
+
     return (
-        <div style={style}>
+        <Div>
             <NavIcon /> 
-            <div>Ramesh Exploid</div>
-        </div>
+            <div>Ramesh Exploida</div>
+        </Div>
     );
 }
 
