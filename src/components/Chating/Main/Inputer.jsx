@@ -36,7 +36,7 @@ const Inputer = ( {changeHistory , setShowSelectName } ) => {
         let lines = val.split("\n") ;
         let back = "" ;
         for ( let i=0; i<lines.length-1 ; i++){
-            if ( (/\n?\d{2}\/\d{2}\/\d{2},.(\d)?\d:\d{2}.(a|p|A|P)(m|M)./).test(lines[i+1]) ){
+            if ( (/\n?(\d)?\d\/(\d)?\d\/\d{2},.(\d)?\d:\d{2}.(a|p|A|P)(m|M)./).test(lines[i+1]) ){
                 back = back.concat(lines[i] +"\n");
             } else {
                 back = back.concat(lines[i] + "&1001;");               // Changing chat \n to &1001;
@@ -48,7 +48,7 @@ const Inputer = ( {changeHistory , setShowSelectName } ) => {
         let value = back.split("\n");
         for ( let i=0;i<value.length; i++){ 
 
-            if ( !(/\n?\d{2}\/\d{2}\/\d{2},.(\d)?\d:\d{2}.(a|p|A|P)(m|M).-./).test(value[i]) ) {break;}
+            if ( !(/\n?(\d)?\d\/(\d)?\d\/\d{2},.(\d)?\d:\d{2}.(a|p|A|P)(m|M).-./).test(value[i]) ) {break;}
 
             let dateEnd    = value[i].indexOf(",",0        );
             let timeEnd    = value[i].indexOf("-",dateEnd+1);
@@ -57,7 +57,7 @@ const Inputer = ( {changeHistory , setShowSelectName } ) => {
             const singleChatData = {};
             // singleChatData.Date = value[i].slice(0,dateEnd).trim() ;
             // singleChatData.Time = value[i].slice(dateEnd+1,timeEnd).trim() ;
-            singleChatData.Date = value[i].match(/\d{2}\/\d{2}\/\d{2}/)[0];
+            singleChatData.Date = value[i].match(/(\d)?\d\/(\d)?\d\/\d{2}/)[0];
             singleChatData.Time = value[i].match(/(\d)?\d:\d{2}.(a|p|A|P)(m|M)/)[0];
 
             if ( nameEnd !== -1){                                      // There is no nameEnd in notifications
