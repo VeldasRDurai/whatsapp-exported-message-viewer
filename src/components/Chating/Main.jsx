@@ -7,7 +7,8 @@ import Phone from "./Main/Phone";
 
 const Div = styled.div`
     display:flex;
-    height:89vh;
+    height: 100vh;
+    /* height:89vh; */
     justify-content:center;
     align-items:center;
     

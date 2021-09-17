@@ -7,7 +7,8 @@ const Div = styled.div`
     height: 8vh;
     padding: 8px;
     background-color: white;
-    display: flex;
+    /* display: flex; */
+    display: none;
     align-items: center;
     justify-content: flex-start;
     font-size: 30px;
@@ -25,7 +26,7 @@ const MainHead = () => {
     return (
         <Div>
             <NavIcon /> 
-            <div>Ramesh Exploida</div>
+            <div> Veldas R Durai </div>
         </Div>
     );
 }
